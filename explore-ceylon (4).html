@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Ceylon — Discover the Wonder of Sri Lanka</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          jungle:  { DEFAULT:'#0E4B37', 50:'#EAF3EF', 100:'#CFE4DA', 300:'#6FA98F', 500:'#1B6B4F', 700:'#0E4B37', 900:'#0A2E22' },
+          gold:    { DEFAULT:'#C9A24B', 100:'#F6ECD3', 300:'#E0C374', 500:'#C9A24B', 700:'#9A7A32' },
+          sand:    { DEFAULT:'#FBF7EF', 100:'#FBF7EF', 200:'#F3ECDC' },
+          ink:     { DEFAULT:'#122019', 700:'#1B2E24' },
+        },
+        fontFamily: {
+          display: ['"Fraunces"', 'serif'],
+          body: ['"Manrope"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  body { font-family:'Manrope',sans-serif; background:#FBF7EF; color:#122019; }
+  h1,h2,h3,.font-display { font-family:'Fraunces',serif; }
+
+  /* ---- View switching ---- */
+  .view { display:none; }
+  .view.active { display:block; animation: fadeUp .55s ease both; }
+  @keyframes fadeUp { from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  [data-reveal] { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  [data-reveal].in { opacity:1; transform:translateY(0); }
+
+  .batik-divider {
+    height:22px; width:100%;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='22' viewBox='0 0 88 22'%3E%3Cpath d='M0 11c6-9 12-9 18 0s12 9 18 0 12-9 18 0 12 9 18 0 12-9 18 0' fill='none' stroke='%23C9A24B' stroke-width='1.4' opacity='0.55'/%3E%3Ccircle cx='9' cy='11' r='1.6' fill='%23C9A24B' opacity='0.55'/%3E%3Ccircle cx='27' cy='11' r='1.6' fill='%23C9A24B' opacity='0.55'/%3E%3Ccircle cx='45' cy='11' r='1.6' fill='%23C9A24B' opacity='0.55'/%3E%3Ccircle cx='63' cy='11' r='1.6' fill='%23C9A24B' opacity='0.55'/%3E%3Ccircle cx='81' cy='11' r='1.6' fill='%23C9A24B' opacity='0.55'/%3E%3C/svg%3E");
+    background-repeat:repeat-x; background-size:88px 22px;
+  }
+
+  .nav-link { position:relative; }
+  .nav-link::after { content:''; position:absolute; left:0; bottom:-4px; width:0%; height:2px; background:#C9A24B; transition:width .3s ease; }
+  .nav-link:hover::after, .nav-link.active::after { width:100%; }
+  .nav-link.active { color:#0E4B37; }
+
+  .glass { background:rgba(255,255,255,0.55); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.4); }
+  .glass-dark { background:rgba(10,46,34,0.45); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.08); }
+
+  .card-hover { transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; }
+  .card-hover:hover { transform:translateY(-8px); box-shadow:0 24px 48px -12px rgba(14,75,55,0.25); }
+
+  .gold-outline-btn { border:1.5px solid #C9A24B; color:#0E4B37; transition:all .3s ease; }
+  .gold-outline-btn:hover { background:#C9A24B; color:#0A2E22; }
+
+  ::selection { background:#C9A24B; color:#0A2E22; }
+
+  .masonry { column-count:1; column-gap:1rem; }
+  @media (min-width:640px){ .masonry{column-count:2;} }
+  @media (min-width:1024px){ .masonry{column-count:3;} }
+  .masonry > div { break-inside:avoid; margin-bottom:1rem; }
+
+  .pkg-card.featured { background:linear-gradient(160deg,#0E4B37 0%,#0A2E22 100%); color:#FBF7EF; }
+
+  input:focus, select:focus, textarea:focus { outline:none; box-shadow:0 0 0 3px rgba(201,162,75,0.35); border-color:#C9A24B; }
+
+  .hero-bg {
+    background-image:linear-gradient(180deg, rgba(10,46,34,0.35) 0%, rgba(10,46,34,0.8) 100%), url('https://images.unsplash.com/photo-1612862862126-865765df2ded?q=80&w=2000&auto=format&fit=crop');
+    background-size:cover; background-position:center;
+  }
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#F3ECDC; }
+  ::-webkit-scrollbar-thumb{ background:#C9A24B; border-radius:8px; }
+
+  .loc-pin.active { background:#0E4B37 !important; color:#FBF7EF !important; border-color:#0E4B37 !important; }
+
+  #modalOverlay { transition:opacity .3s ease; }
+  #modalPanel { transition:transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s ease; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ================= NAVBAR ================= -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-sand/90 backdrop-blur-md border-b border-gold-100/60 transition-shadow duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
+    <button data-nav="home" class="nav-trigger flex items-center gap-2">
+      <span class="font-display text-2xl md:text-3xl font-semibold text-jungle-700">Explore <span class="text-gold-500">Ceylon</span></span>
+    </button>
+
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide text-ink-700">
+      <button data-nav="home" class="nav-trigger nav-link active">Home</button>
+      <button data-nav="destinations" class="nav-trigger nav-link">Destinations</button>
+      <button data-nav="packages" class="nav-trigger nav-link">Tour Packages</button>
+      <button data-nav="planner" class="nav-trigger nav-link">AI Trip Planner</button>
+      <button data-nav="culture" class="nav-trigger nav-link">Culture</button>
+      <button data-nav="map" class="nav-trigger nav-link">Live Map</button>
+      <button data-nav="contact" class="nav-trigger nav-link">Contact</button>
+    </nav>
+
+    <button data-nav="contact" class="nav-trigger hidden lg:inline-block bg-jungle-700 hover:bg-jungle-900 text-sand px-5 py-2.5 rounded-full text-sm font-bold transition-colors">
+      Plan Your Trip
+    </button>
+
+    <button id="mobileBtn" class="lg:hidden text-jungle-700">
+      <i id="iconOpen" class="fa-solid fa-bars text-2xl"></i>
+      <i id="iconClose" class="fa-solid fa-xmark text-2xl hidden"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden lg:hidden bg-sand border-t border-gold-100 px-6 py-6 flex flex-col gap-5 text-ink-700 font-semibold">
+    <button data-nav="home" class="nav-trigger text-left">Home</button>
+    <button data-nav="destinations" class="nav-trigger text-left">Destinations</button>
+    <button data-nav="packages" class="nav-trigger text-left">Tour Packages</button>
+    <button data-nav="planner" class="nav-trigger text-left">AI Trip Planner</button>
+    <button data-nav="culture" class="nav-trigger text-left">Culture</button>
+    <button data-nav="map" class="nav-trigger text-left">Live Map</button>
+    <button data-nav="contact" class="nav-trigger text-left">Contact</button>
+  </div>
+</header>
+
+<main class="pt-20">
+
+<!-- ============================================================= -->
+<!-- 1. HOME -->
+<!-- ============================================================= -->
+<section id="view-home" class="view active">
+  <div class="relative min-h-[92vh] hero-bg flex items-center">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 w-full">
+      <div class="max-w-2xl" data-reveal>
+        <span class="inline-flex items-center gap-2 bg-gold-500/15 border border-gold-300/50 text-gold-100 text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-6">
+          <i class="fa-solid fa-om"></i> Ayubowan · Welcome to the Pearl of the Indian Ocean
+        </span>
+        <h1 class="font-display text-5xl md:text-7xl leading-[1.05] text-sand font-semibold mb-6">
+          Discover the <span class="italic text-gold-300">Wonder</span> of Sri Lanka
+        </h1>
+        <p class="text-sand/85 text-lg md:text-xl mb-9 leading-relaxed">
+          Ancient kingdoms, misty tea hills, golden coastlines, and warm smiles — an island of eight world heritage sites, waiting on your itinerary.
+        </p>
+
+        <!-- Quick search -->
+        <div class="glass rounded-2xl p-3 flex flex-col sm:flex-row gap-3 mb-8 max-w-xl">
+          <div class="flex items-center gap-2 flex-1 px-3">
+            <i class="fa-solid fa-magnifying-glass text-jungle-700"></i>
+            <input id="quickSearch" type="text" placeholder="Search Sigiriya, Ella, Galle..." class="w-full bg-transparent py-2 text-ink-700 placeholder:text-ink-700/50 border-none focus:ring-0">
+          </div>
+          <button id="quickSearchBtn" class="bg-jungle-700 hover:bg-jungle-900 text-sand font-bold px-6 py-3 rounded-xl transition-colors">Search</button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button data-nav="planner" class="nav-trigger bg-gold-500 hover:bg-gold-300 text-jungle-900 font-bold px-8 py-4 rounded-full text-center transition-all duration-300 shadow-lg shadow-black/20 hover:-translate-y-0.5">
+            ✨ Plan My Journey
+          </button>
+          <button data-nav="destinations" class="nav-trigger border border-sand/40 text-sand hover:bg-sand/10 font-semibold px-8 py-4 rounded-full text-center transition-all duration-300">
+            Explore Destinations
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 w-full glass-dark border-t border-sand/10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-sand/15 text-sand">
+        <div class="py-6 px-4 text-center"><p class="font-display text-3xl font-semibold text-gold-300">8</p><p class="text-xs uppercase tracking-widest text-sand/70 mt-1">World Heritage Sites</p></div>
+        <div class="py-6 px-4 text-center"><p class="font-display text-3xl font-semibold text-gold-300">1,340km</p><p class="text-xs uppercase tracking-widest text-sand/70 mt-1">Of Coastline</p></div>
+        <div class="py-6 px-4 text-center"><p class="font-display text-3xl font-semibold text-gold-300">26</p><p class="text-xs uppercase tracking-widest text-sand/70 mt-1">National Parks</p></div>
+        <div class="py-6 px-4 text-center"><p class="font-display text-3xl font-semibold text-gold-300">2,500yrs</p><p class="text-xs uppercase tracking-widest text-sand/70 mt-1">Of Living History</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="batik-divider"></div>
+
+  <!-- Popular destinations preview strip -->
+  <div class="py-20 bg-jungle-900">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12" data-reveal>
+        <div>
+          <span class="text-gold-300 font-bold tracking-[0.2em] uppercase text-xs">Fan favourites</span>
+          <h2 class="font-display text-3xl md:text-4xl font-semibold text-sand mt-3">Popular Destinations This Season</h2>
+        </div>
+        <button data-nav="destinations" class="nav-trigger text-gold-300 font-bold text-sm inline-flex items-center gap-2 hover:gap-3 transition-all">
+          View all 8 destinations <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <button data-nav="destinations" class="nav-trigger card-hover group relative rounded-2xl overflow-hidden h-64 text-left" data-reveal>
+          <img src="https://images.unsplash.com/photo-1612862862126-865765df2ded?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sigiriya">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/10 to-transparent"></div>
+          <div class="absolute bottom-0 p-5"><span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Central Province</span><h3 class="font-display text-xl text-sand font-semibold mt-1">Sigiriya</h3></div>
+        </button>
+        <button data-nav="destinations" class="nav-trigger card-hover group relative rounded-2xl overflow-hidden h-64 text-left" data-reveal>
+          <img src="https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ella">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/10 to-transparent"></div>
+          <div class="absolute bottom-0 p-5"><span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Uva Province</span><h3 class="font-display text-xl text-sand font-semibold mt-1">Ella</h3></div>
+        </button>
+        <button data-nav="destinations" class="nav-trigger card-hover group relative rounded-2xl overflow-hidden h-64 text-left" data-reveal>
+          <img src="https://images.unsplash.com/photo-1744943776860-edee0425bca5?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Galle">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/10 to-transparent"></div>
+          <div class="absolute bottom-0 p-5"><span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Southern Coast</span><h3 class="font-display text-xl text-sand font-semibold mt-1">Galle</h3></div>
+        </button>
+        <button data-nav="destinations" class="nav-trigger card-hover group relative rounded-2xl overflow-hidden h-64 text-left" data-reveal>
+          <img src="https://images.unsplash.com/photo-1519566335946-e6f65f0f4fdf?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mirissa">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/10 to-transparent"></div>
+          <div class="absolute bottom-0 p-5"><span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Southern Coast</span><h3 class="font-display text-xl text-sand font-semibold mt-1">Mirissa</h3></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Teaser strip linking to other views -->
+  <div class="py-20 bg-sand">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
+        <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">Everything in one place</span>
+        <h2 class="font-display text-3xl md:text-4xl font-semibold text-jungle-900 mt-3">Plan, Book & Explore — Seamlessly</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <button data-nav="destinations" class="nav-trigger card-hover text-left bg-white rounded-2xl p-6 border border-gold-100" data-reveal>
+          <i class="fa-solid fa-map-location-dot text-2xl text-gold-500 mb-4"></i>
+          <h3 class="font-bold text-jungle-900">Destinations</h3>
+          <p class="text-sm text-ink-700/60 mt-1">8 iconic locations, mapped & detailed.</p>
+        </button>
+        <button data-nav="planner" class="nav-trigger card-hover text-left bg-white rounded-2xl p-6 border border-gold-100" data-reveal>
+          <i class="fa-solid fa-robot text-2xl text-gold-500 mb-4"></i>
+          <h3 class="font-bold text-jungle-900">AI Trip Planner</h3>
+          <p class="text-sm text-ink-700/60 mt-1">Your custom itinerary in seconds.</p>
+        </button>
+        <button data-nav="map" class="nav-trigger card-hover text-left bg-white rounded-2xl p-6 border border-gold-100" data-reveal>
+          <i class="fa-solid fa-location-crosshairs text-2xl text-gold-500 mb-4"></i>
+          <h3 class="font-bold text-jungle-900">Live Map</h3>
+          <p class="text-sm text-ink-700/60 mt-1">Real-time Google Maps of every stop.</p>
+        </button>
+        <button data-nav="packages" class="nav-trigger card-hover text-left bg-white rounded-2xl p-6 border border-gold-100" data-reveal>
+          <i class="fa-solid fa-suitcase-rolling text-2xl text-gold-500 mb-4"></i>
+          <h3 class="font-bold text-jungle-900">Tour Packages</h3>
+          <p class="text-sm text-ink-700/60 mt-1">Fair, transparent pricing for every budget.</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 2. DESTINATIONS -->
+<!-- ============================================================= -->
+<section id="view-destinations" class="view">
+  <div class="py-20 bg-sand min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl mb-14" data-reveal>
+        <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">Where to go</span>
+        <h2 class="font-display text-4xl md:text-5xl font-semibold text-jungle-900 mt-3">Eight Places That Define the Island</h2>
+        <p class="text-ink-700/70 mt-4 text-lg">Click any card for details, insider tips, and its exact location on the map.</p>
+      </div>
+
+      <div id="destGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 3. TOUR PACKAGES -->
+<!-- ============================================================= -->
+<section id="view-packages" class="view">
+  <div class="py-20 bg-jungle-900 relative overflow-hidden min-h-screen">
+    <div class="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_1px_1px,#FBF7EF_1px,transparent_1px)] [background-size:28px_28px]"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+      <div class="max-w-2xl mb-14" data-reveal>
+        <span class="text-gold-300 font-bold tracking-[0.2em] uppercase text-xs">Tour packages</span>
+        <h2 class="font-display text-4xl md:text-5xl font-semibold text-sand mt-3">Curated Journeys, Fair Prices</h2>
+        <p class="text-sand/70 mt-4 text-lg">Every package includes a licensed local guide, private transport, and 24/7 concierge support.</p>
+      </div>
+
+      <!-- Duration toggle -->
+      <div class="inline-flex bg-sand/10 rounded-full p-1.5 mb-10 border border-sand/10" data-reveal>
+        <button data-dur="3" class="dur-btn active px-6 py-2.5 rounded-full text-sm font-bold transition-colors">3-Day</button>
+        <button data-dur="7" class="dur-btn px-6 py-2.5 rounded-full text-sm font-bold transition-colors">7-Day</button>
+        <button data-dur="14" class="dur-btn px-6 py-2.5 rounded-full text-sm font-bold transition-colors">14-Day</button>
+      </div>
+
+      <div id="pkgGrid" class="grid md:grid-cols-3 gap-8"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 4. AI TRIP PLANNER -->
+<!-- ============================================================= -->
+<section id="view-planner" class="view">
+  <div class="py-20 bg-gold-100/40 min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl mb-14 mx-auto text-center" data-reveal>
+        <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">AI Trip Planner</span>
+        <h2 class="font-display text-4xl md:text-5xl font-semibold text-jungle-900 mt-3">Your Itinerary, Instantly Sketched</h2>
+        <p class="text-ink-700/70 mt-4 text-lg">Tell us your pace, budget, and interests — we'll draft a day-by-day route across the island.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div class="bg-sand rounded-3xl p-8 md:p-10 shadow-xl shadow-jungle-900/5 border border-gold-100" data-reveal>
+          <form id="plannerForm" class="space-y-6">
+            <div>
+              <label class="block text-sm font-bold text-jungle-900 mb-2">Trip length</label>
+              <select id="tripDays" class="w-full border border-gold-100 bg-white rounded-xl px-4 py-3 text-ink-700">
+                <option value="4">4 days</option>
+                <option value="7" selected>7 days</option>
+                <option value="10">10 days</option>
+                <option value="14">14 days</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-jungle-900 mb-2">Travel style</label>
+              <div class="grid grid-cols-3 gap-3">
+                <label class="cursor-pointer">
+                  <input type="radio" name="style" value="relaxed" class="hidden peer" checked>
+                  <div class="peer-checked:bg-jungle-700 peer-checked:text-sand peer-checked:border-jungle-700 border border-gold-100 rounded-xl py-3 text-center text-sm font-semibold text-ink-700 transition-colors">Relaxed</div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="style" value="balanced" class="hidden peer">
+                  <div class="peer-checked:bg-jungle-700 peer-checked:text-sand peer-checked:border-jungle-700 border border-gold-100 rounded-xl py-3 text-center text-sm font-semibold text-ink-700 transition-colors">Balanced</div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="style" value="adventurous" class="hidden peer">
+                  <div class="peer-checked:bg-jungle-700 peer-checked:text-sand peer-checked:border-jungle-700 border border-gold-100 rounded-xl py-3 text-center text-sm font-semibold text-ink-700 transition-colors">Adventurous</div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-jungle-900 mb-2">Interests</label>
+              <div class="flex flex-wrap gap-2" id="interestGroup">
+                <button type="button" data-interest="Culture & Heritage" class="interest-chip px-4 py-2 rounded-full border border-gold-100 text-sm font-semibold text-ink-700 transition-colors">Culture & Heritage</button>
+                <button type="button" data-interest="Beaches" class="interest-chip px-4 py-2 rounded-full border border-gold-100 text-sm font-semibold text-ink-700 transition-colors">Beaches</button>
+                <button type="button" data-interest="Wildlife" class="interest-chip px-4 py-2 rounded-full border border-gold-100 text-sm font-semibold text-ink-700 transition-colors">Wildlife</button>
+                <button type="button" data-interest="Hiking" class="interest-chip px-4 py-2 rounded-full border border-gold-100 text-sm font-semibold text-ink-700 transition-colors">Hiking</button>
+                <button type="button" data-interest="Food" class="interest-chip px-4 py-2 rounded-full border border-gold-100 text-sm font-semibold text-ink-700 transition-colors">Food</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-jungle-900 mb-2">Budget level</label>
+              <input id="budgetRange" type="range" min="1" max="3" value="2" class="w-full accent-jungle-700">
+              <div class="flex justify-between text-xs font-semibold text-ink-700/60 mt-1">
+                <span>Backpacker</span><span>Comfort</span><span>Luxury</span>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full bg-jungle-700 hover:bg-jungle-900 text-sand font-bold py-4 rounded-full transition-colors">
+              ✨ Generate My Itinerary
+            </button>
+          </form>
+        </div>
+
+        <div id="plannerResult" class="bg-jungle-900 text-sand rounded-3xl p-8 md:p-10 min-h-[420px] flex flex-col" data-reveal>
+          <div id="plannerPlaceholder" class="m-auto text-center max-w-xs">
+            <i class="fa-solid fa-map text-5xl text-gold-300/70 mb-4"></i>
+            <p class="font-display text-xl text-sand/90">Your custom itinerary will appear here</p>
+            <p class="text-sand/50 text-sm mt-2">Fill in your preferences and generate a preview route.</p>
+          </div>
+          <div id="plannerOutput" class="hidden">
+            <span class="text-gold-300 text-xs font-bold tracking-widest uppercase">Your Preview Itinerary</span>
+            <h3 id="outHeadline" class="font-display text-2xl font-semibold mt-2 mb-6"></h3>
+            <ol id="outDays" class="space-y-4 text-sm text-sand/85"></ol>
+            <p class="text-sand/40 text-xs mt-6">* AI-generated preview for illustration — our travel designers will refine this with you before booking.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 5. CULTURE & HERITAGE -->
+<!-- ============================================================= -->
+<section id="view-culture" class="view">
+  <div class="py-20 bg-sand min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <div class="max-w-2xl mb-16" data-reveal>
+        <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">Culture & Heritage</span>
+        <h2 class="font-display text-4xl md:text-5xl font-semibold text-jungle-900 mt-3">A Living Tapestry of Traditions</h2>
+        <p class="text-ink-700/70 mt-4 text-lg">Sri Lanka's culture blends 2,500 years of Buddhist and Hindu heritage with Portuguese, Dutch, and British influence — visible in its temples, festivals, tea estates, and famously generous table.</p>
+      </div>
+
+      <!-- Row 1: Sacred Temples -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div data-reveal>
+          <img src="https://images.unsplash.com/photo-1582103517762-613cc237349b?q=80&w=1000&auto=format&fit=crop" class="rounded-3xl w-full h-80 object-cover" alt="Golden Buddha statue at Dambulla Cave Temple">
+        </div>
+        <div data-reveal>
+          <div class="w-14 h-14 rounded-full bg-gold-100 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-place-of-worship text-jungle-700"></i></div>
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">01 · Sacred Temples</span>
+          <h3 class="font-display text-3xl font-semibold text-jungle-900 mt-2 mb-4">Where Spirituality Shapes Daily Life</h3>
+          <p class="text-ink-700/75 leading-relaxed mb-4">From the Temple of the Sacred Tooth Relic in Kandy — home to Buddhism's most venerated relic — to the 22-century-old cave shrines of Dambulla with their 150+ gilded Buddha statues, sacred sites anchor everyday Sri Lankan life.</p>
+          <p class="text-ink-700/75 leading-relaxed">Visitors are welcome at most temples; modest dress and bare feet are customary, and a small donation is always appreciated.</p>
+        </div>
+      </div>
+
+      <!-- Row 2: Dance & Festivals (reversed) -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div class="lg:order-2" data-reveal>
+          <img src="https://images.unsplash.com/photo-1566766188646-5d0310191714?q=80&w=1000&auto=format&fit=crop" class="rounded-3xl w-full h-80 object-cover" alt="Traditional Kandyan fire dance performance">
+        </div>
+        <div class="lg:order-1" data-reveal>
+          <div class="w-14 h-14 rounded-full bg-gold-100 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-drum text-jungle-700"></i></div>
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">02 · Dance & Festivals</span>
+          <h3 class="font-display text-3xl font-semibold text-jungle-900 mt-2 mb-4">Drums, Fire, and the Esala Perahera</h3>
+          <p class="text-ink-700/75 leading-relaxed mb-4">Kandyan dance traces back to ancient purification rituals, with elaborate Ves costumes and thunderous geta bera drumming. Its grandest stage is the Esala Perahera — ten nights of torch-lit processions with decorated elephants, fire dancers, and whip-crackers through the streets of Kandy each July or August.</p>
+          <p class="text-ink-700/75 leading-relaxed">Smaller village peraheras and temple festivals happen year-round across the island.</p>
+        </div>
+      </div>
+
+      <!-- Row 3: Food -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div data-reveal>
+          <img src="https://images.unsplash.com/photo-1742281095650-dd3c50c08772?q=80&w=1000&auto=format&fit=crop" class="rounded-3xl w-full h-80 object-cover" alt="Traditional Sri Lankan rice and curry meal">
+        </div>
+        <div data-reveal>
+          <div class="w-14 h-14 rounded-full bg-gold-100 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-bowl-rice text-jungle-700"></i></div>
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">03 · Rice, Curry & Spice</span>
+          <h3 class="font-display text-3xl font-semibold text-jungle-900 mt-2 mb-4">A Table Built on Cinnamon and Coconut</h3>
+          <p class="text-ink-700/75 leading-relaxed mb-4">A classic Sri Lankan meal spreads five or more small curries — vegetable, fish, and meat — around a mound of rice, tied together with coconut sambol, papadam, and pickle. Hoppers (bowl-shaped rice pancakes) and kottu roti are beloved street-food staples.</p>
+          <p class="text-ink-700/75 leading-relaxed">The island was once the world's dominant cinnamon exporter, and its cardamom, clove, and pepper still flavour kitchens worldwide.</p>
+        </div>
+      </div>
+
+      <!-- Row 4: Tea Legacy (reversed) -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div class="lg:order-2" data-reveal>
+          <img src="https://images.unsplash.com/photo-1559038300-07cb5d6c3d27?q=80&w=1000&auto=format&fit=crop" class="rounded-3xl w-full h-80 object-cover" alt="Tea plantation in Nuwara Eliya">
+        </div>
+        <div class="lg:order-1" data-reveal>
+          <div class="w-14 h-14 rounded-full bg-gold-100 flex items-center justify-center text-xl mb-5"><i class="fa-solid fa-mug-hot text-jungle-700"></i></div>
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">04 · Ceylon Tea Legacy</span>
+          <h3 class="font-display text-3xl font-semibold text-jungle-900 mt-2 mb-4">Green Gold of the Hill Country</h3>
+          <p class="text-ink-700/75 leading-relaxed mb-4">Introduced by the British in 1867 after coffee blight wiped out the island's coffee estates, tea transformed the misty highlands around Nuwara Eliya, Ella, and Kandy into terraced gardens. Sri Lanka remains one of the few countries where tea is still hand-plucked, two leaves and a bud at a time.</p>
+          <p class="text-ink-700/75 leading-relaxed">Factory tours end with a tasting of orthodox black, green, and white teas straight from the source.</p>
+        </div>
+      </div>
+
+      <div class="batik-divider my-16"></div>
+
+      <!-- Gallery -->
+      <div data-reveal>
+        <div class="max-w-2xl mb-10">
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">Gallery</span>
+          <h2 class="font-display text-3xl md:text-4xl font-semibold text-jungle-900 mt-3">Landscapes Worth the Journey</h2>
+          <p class="text-ink-700/70 mt-3">A glimpse of the temples, wildlife, and coastlines waiting across the island.</p>
+        </div>
+        <div class="masonry">
+          <div><img src="https://images.unsplash.com/photo-1612862862126-865765df2ded?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Sigiriya Lion Rock"></div>
+          <div><img src="https://images.unsplash.com/photo-1519566335946-e6f65f0f4fdf?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Mirissa beach"></div>
+          <div><img src="https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Nine Arch Bridge, Ella"></div>
+          <div><img src="https://images.unsplash.com/photo-1665849050430-5e8c16bacf7e?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Temple of the Tooth, Kandy"></div>
+          <div><img src="https://images.unsplash.com/photo-1744943776860-edee0425bca5?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Galle Fort at sunset"></div>
+          <div><img src="https://images.unsplash.com/photo-1608996780996-52144fb5a915?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Wild elephant"></div>
+          <div><img src="https://images.unsplash.com/photo-1627401099591-4772d63b86a4?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Leopard in the wild"></div>
+          <div><img src="https://images.unsplash.com/photo-1582103517762-613cc237349b?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Dambulla Golden Temple"></div>
+          <div><img src="https://images.unsplash.com/photo-1742277295420-650b9134086a?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Lotus Tower, Colombo"></div>
+          <div><img src="https://images.unsplash.com/photo-1566766188646-5d0310191714?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Traditional fire dance"></div>
+          <div><img src="https://images.unsplash.com/photo-1559038300-07cb5d6c3d27?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Tea plantation, Nuwara Eliya"></div>
+          <div><img src="https://images.unsplash.com/photo-1742281095650-dd3c50c08772?q=80&w=800&auto=format&fit=crop" class="rounded-2xl w-full object-cover" alt="Sri Lankan rice and curry"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 6. LIVE MAP & LOCATIONS -->
+<!-- ============================================================= -->
+<section id="view-map" class="view">
+  <div class="py-20 bg-jungle-900 min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl mb-10" data-reveal>
+        <span class="text-gold-300 font-bold tracking-[0.2em] uppercase text-xs">Live Map & Locations</span>
+        <h2 class="font-display text-4xl md:text-5xl font-semibold text-sand mt-3">Find Every Spot, In Real Time</h2>
+        <p class="text-sand/70 mt-4 text-lg">Tap a location to re-center the live map — powered by Google Maps.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-1 space-y-3" data-reveal>
+          <button class="loc-pin active w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="colombo">
+            <i class="fa-solid fa-city text-gold-300"></i>
+            <div><p class="font-bold text-sand">Colombo</p><p class="text-xs text-sand/50">Commercial capital & Galle Face</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="sigiriya">
+            <i class="fa-solid fa-mountain text-gold-300"></i>
+            <div><p class="font-bold text-sand">Sigiriya</p><p class="text-xs text-sand/50">Ancient Lion Rock fortress</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="dambulla">
+            <i class="fa-solid fa-gopuram text-gold-300"></i>
+            <div><p class="font-bold text-sand">Dambulla</p><p class="text-xs text-sand/50">Golden cave temple complex</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="kandy">
+            <i class="fa-solid fa-place-of-worship text-gold-300"></i>
+            <div><p class="font-bold text-sand">Kandy</p><p class="text-xs text-sand/50">Temple of the Sacred Tooth</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="nuwaraeliya">
+            <i class="fa-solid fa-mug-hot text-gold-300"></i>
+            <div><p class="font-bold text-sand">Nuwara Eliya</p><p class="text-xs text-sand/50">Misty tea country</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="ella">
+            <i class="fa-solid fa-train text-gold-300"></i>
+            <div><p class="font-bold text-sand">Ella</p><p class="text-xs text-sand/50">Hill country & Nine Arch Bridge</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="galle">
+            <i class="fa-solid fa-anchor text-gold-300"></i>
+            <div><p class="font-bold text-sand">Galle</p><p class="text-xs text-sand/50">Dutch colonial fort city</p></div>
+          </button>
+          <button class="loc-pin w-full text-left flex items-center gap-4 p-4 rounded-2xl border border-sand/15 bg-sand/5 hover:bg-sand/10 transition-colors" data-loc="mirissa">
+            <i class="fa-solid fa-umbrella-beach text-gold-300"></i>
+            <div><p class="font-bold text-sand">Mirissa</p><p class="text-xs text-sand/50">Beaches & whale watching</p></div>
+          </button>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6" data-reveal>
+          <div class="rounded-3xl overflow-hidden border border-sand/15 shadow-2xl shadow-black/40 h-[420px]">
+            <iframe id="mapFrame"
+              class="w-full h-full"
+              style="border:0;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Colombo,Sri+Lanka&output=embed">
+            </iframe>
+          </div>
+
+          <!-- Live info panel, updates with the selected pin -->
+          <div id="mapInfoPanel" class="glass-dark rounded-3xl p-6 flex flex-col sm:flex-row gap-5 border border-sand/10">
+            <img id="mapInfoImg" src="https://images.unsplash.com/photo-1742277295420-650b9134086a?q=80&w=400&auto=format&fit=crop" alt="" class="w-full sm:w-40 h-40 object-cover rounded-2xl flex-shrink-0">
+            <div>
+              <span id="mapInfoRegion" class="text-gold-300 text-xs font-bold tracking-widest uppercase">Western Province</span>
+              <h3 id="mapInfoName" class="font-display text-2xl text-sand font-semibold mt-1">Colombo</h3>
+              <p id="mapInfoDesc" class="text-sand/70 text-sm mt-2 leading-relaxed">Sri Lanka's commercial capital — colonial streets meet a modern skyline.</p>
+              <div class="flex gap-6 mt-3 text-xs">
+                <span class="text-sand/50">Best time: <span id="mapInfoTime" class="text-gold-300 font-semibold"></span></span>
+                <span class="text-sand/50">Highlight: <span id="mapInfoHighlight" class="text-gold-300 font-semibold"></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- 7. CONTACT & BOOKING -->
+<!-- ============================================================= -->
+<section id="view-contact" class="view">
+  <div class="py-20 bg-sand min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-5 gap-12">
+        <div class="lg:col-span-2" data-reveal>
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">Get in touch</span>
+          <h2 class="font-display text-4xl font-semibold text-jungle-900 mt-3 mb-6">Start Planning Your Ceylon Story</h2>
+          <p class="text-ink-700/70 mb-8 leading-relaxed">Send us a few details and one of our local travel designers will reply within one business day with a tailored proposal.</p>
+          <div class="space-y-5">
+            <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-full bg-jungle-700 text-sand flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div><div><p class="text-xs text-ink-700/50 uppercase tracking-widest font-bold">Email</p><p class="text-ink-700 font-semibold">hello@exploreceylon.lk</p></div></div>
+            <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-full bg-jungle-700 text-sand flex items-center justify-center"><i class="fa-solid fa-phone"></i></div><div><p class="text-xs text-ink-700/50 uppercase tracking-widest font-bold">Phone</p><p class="text-ink-700 font-semibold">+94 11 234 5678</p></div></div>
+            <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-full bg-jungle-700 text-sand flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div><div><p class="text-xs text-ink-700/50 uppercase tracking-widest font-bold">Office</p><p class="text-ink-700 font-semibold">Galle Face Terrace, Colombo 03</p></div></div>
+          </div>
+
+          <img src="https://images.unsplash.com/photo-1742277295420-650b9134086a?q=80&w=800&auto=format&fit=crop" alt="Colombo skyline near our office" class="rounded-2xl w-full h-48 object-cover mt-8">
+        </div>
+
+        <form id="contactForm" class="lg:col-span-3 bg-white rounded-3xl p-8 md:p-10 shadow-xl shadow-jungle-900/5 border border-gold-100 space-y-5" data-reveal>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div><label class="block text-sm font-bold text-jungle-900 mb-2">Full name</label><input required type="text" placeholder="Your name" class="w-full border border-gold-100 rounded-xl px-4 py-3 text-ink-700"></div>
+            <div><label class="block text-sm font-bold text-jungle-900 mb-2">Email</label><input required type="email" placeholder="you@email.com" class="w-full border border-gold-100 rounded-xl px-4 py-3 text-ink-700"></div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div><label class="block text-sm font-bold text-jungle-900 mb-2">Travel dates</label><input type="text" placeholder="e.g. Dec 2026" class="w-full border border-gold-100 rounded-xl px-4 py-3 text-ink-700"></div>
+            <div><label class="block text-sm font-bold text-jungle-900 mb-2">Number of travelers</label><input type="number" min="1" placeholder="2" class="w-full border border-gold-100 rounded-xl px-4 py-3 text-ink-700"></div>
+          </div>
+          <div><label class="block text-sm font-bold text-jungle-900 mb-2">Tell us about your trip</label><textarea rows="4" placeholder="Interests, must-see places, special occasions..." class="w-full border border-gold-100 rounded-xl px-4 py-3 text-ink-700 resize-none"></textarea></div>
+          <button type="submit" class="w-full bg-jungle-700 hover:bg-jungle-900 text-sand font-bold py-4 rounded-full transition-colors">Send Inquiry</button>
+          <p id="contactSuccess" class="hidden text-jungle-700 font-semibold text-sm text-center"><i class="fa-solid fa-circle-check"></i> Thank you — your inquiry has been noted. We'll be in touch soon!</p>
+        </form>
+      </div>
+
+      <div class="mt-20 max-w-3xl mx-auto" data-reveal>
+        <div class="text-center mb-10">
+          <span class="text-gold-700 font-bold tracking-[0.2em] uppercase text-xs">FAQ</span>
+          <h2 class="font-display text-3xl font-semibold text-jungle-900 mt-3">Common Questions</h2>
+        </div>
+        <div class="space-y-3">
+          <details class="group bg-white border border-gold-100 rounded-2xl p-5 open:shadow-md transition-shadow">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-jungle-900 list-none">
+              Do I need a visa to visit Sri Lanka?
+              <i class="fa-solid fa-chevron-down text-gold-500 transition-transform group-open:rotate-180"></i>
+            </summary>
+            <p class="text-ink-700/70 text-sm mt-3 leading-relaxed">Most nationalities need an Electronic Travel Authorization (ETA), which can be applied for online and is usually approved within 24 hours. We'll send you the current requirements once your dates are confirmed.</p>
+          </details>
+          <details class="group bg-white border border-gold-100 rounded-2xl p-5 open:shadow-md transition-shadow">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-jungle-900 list-none">
+              What's the best time of year to visit?
+              <i class="fa-solid fa-chevron-down text-gold-500 transition-transform group-open:rotate-180"></i>
+            </summary>
+            <p class="text-ink-700/70 text-sm mt-3 leading-relaxed">Sri Lanka has two monsoon seasons on opposite coasts, so somewhere is always dry. December–March suits the south and west coasts and the Cultural Triangle; May–September favours the east coast around Trincomalee.</p>
+          </details>
+          <details class="group bg-white border border-gold-100 rounded-2xl p-5 open:shadow-md transition-shadow">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-jungle-900 list-none">
+              Are your tour packages customizable?
+              <i class="fa-solid fa-chevron-down text-gold-500 transition-transform group-open:rotate-180"></i>
+            </summary>
+            <p class="text-ink-700/70 text-sm mt-3 leading-relaxed">Absolutely — every package on our Tour Packages page is a starting template. Tell us your dates, pace, and interests in the AI Trip Planner or this contact form, and we'll tailor the route, hotels, and activities to match.</p>
+          </details>
+          <details class="group bg-white border border-gold-100 rounded-2xl p-5 open:shadow-md transition-shadow">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-jungle-900 list-none">
+              How far in advance should I book?
+              <i class="fa-solid fa-chevron-down text-gold-500 transition-transform group-open:rotate-180"></i>
+            </summary>
+            <p class="text-ink-700/70 text-sm mt-3 leading-relaxed">4–8 weeks ahead is comfortable for most itineraries; for peak season (Dec–Mar) or the Esala Perahera festival in Kandy, we recommend booking 3+ months out to secure the best boutique stays.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-jungle-900 text-sand/60 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <span class="font-display text-xl text-sand font-semibold">Explore <span class="text-gold-300">Ceylon</span></span>
+    <div class="flex gap-8 text-sm font-semibold">
+      <button data-nav="home" class="nav-trigger hover:text-gold-300 transition-colors">Home</button>
+      <button data-nav="destinations" class="nav-trigger hover:text-gold-300 transition-colors">Destinations</button>
+      <button data-nav="packages" class="nav-trigger hover:text-gold-300 transition-colors">Packages</button>
+      <button data-nav="contact" class="nav-trigger hover:text-gold-300 transition-colors">Contact</button>
+    </div>
+    <p class="text-xs">© 2026 Explore Ceylon Tourism Board. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ================= DESTINATION DETAIL MODAL ================= -->
+<div id="modalOverlay" class="fixed inset-0 bg-ink-900/70 backdrop-blur-sm z-[60] hidden opacity-0 flex items-center justify-center p-4">
+  <div id="modalPanel" class="bg-sand rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto opacity-0 translate-y-6 scale-95">
+    <div class="relative">
+      <img id="modalImg" src="" alt="" class="w-full h-72 object-cover rounded-t-3xl">
+      <button id="modalClose" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-ink-900/60 text-sand flex items-center justify-center hover:bg-ink-900/90 transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <span id="modalRegion" class="absolute bottom-4 left-6 text-gold-300 text-xs font-bold tracking-widest uppercase"></span>
+    </div>
+    <div class="p-8">
+      <h3 id="modalTitle" class="font-display text-3xl font-semibold text-jungle-900 mb-3"></h3>
+      <p id="modalDesc" class="text-ink-700/70 leading-relaxed mb-6"></p>
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="bg-white rounded-xl p-4 border border-gold-100"><p class="text-xs text-ink-700/50 uppercase tracking-widest font-bold">Best Time</p><p id="modalTime" class="font-semibold text-jungle-900 mt-1"></p></div>
+        <div class="bg-white rounded-xl p-4 border border-gold-100"><p class="text-xs text-ink-700/50 uppercase tracking-widest font-bold">Highlight</p><p id="modalHighlight" class="font-semibold text-jungle-900 mt-1"></p></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="modalMapBtn" class="flex-1 gold-outline-btn font-bold py-3 rounded-full text-center"><i class="fa-solid fa-map-location-dot mr-2"></i>View on Live Map</button>
+        <button id="modalContactBtn" class="flex-1 bg-jungle-700 hover:bg-jungle-900 text-sand font-bold py-3 rounded-full text-center transition-colors">Enquire About This Trip</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+============================================================ */
+const destinations = [
+  {
+    id:'sigiriya', name:'Sigiriya', region:'Central Province', large:true,
+    img:'https://images.unsplash.com/photo-1612862862126-865765df2ded?q=80&w=1400&auto=format&fit=crop',
+    tag:'The 5th-century Lion Rock — a UNESCO fortress rising 200m above the jungle canopy.',
+    desc:'Sigiriya, the ancient rock fortress of King Kashyapa, rises dramatically from the central plains. Climb past frescoed galleries and the mirror wall to a summit palace with sweeping jungle views — one of Asia\'s most photographed sights and a UNESCO World Heritage Site.',
+    time:'Jan – Mar', highlight:'Sunrise summit climb'
+  },
+  {
+    id:'ella', name:'Ella', region:'Uva Province',
+    img:'https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?q=80&w=1200&auto=format&fit=crop',
+    tag:'Tea-clad hills, Nine Arch Bridge, and cool mountain air.',
+    desc:'A laid-back hill-country town surrounded by tea estates, waterfalls, and dramatic ridgelines. Walk across the iconic Nine Arch Bridge, hike Little Adam\'s Peak, and ride one of the world\'s most scenic train routes to get here.',
+    time:'Jan – Mar', highlight:'Nine Arch Bridge at sunrise'
+  },
+  {
+    id:'galle', name:'Galle', region:'Southern Coast',
+    img:'https://images.unsplash.com/photo-1744943776860-edee0425bca5?q=80&w=1200&auto=format&fit=crop',
+    tag:'A 16th-century Dutch fort city facing the Indian Ocean.',
+    desc:'Galle Fort is a UNESCO-listed walled city built by the Portuguese and fortified by the Dutch, its ramparts framing boutique cafés, art galleries, and ocean sunsets. Wander cobbled lanes lined with colonial architecture.',
+    time:'Dec – Apr', highlight:'Sunset walk on the ramparts'
+  },
+  {
+    id:'kandy', name:'Kandy', region:'Central Highlands',
+    img:'https://images.unsplash.com/photo-1665849050430-5e8c16bacf7e?q=80&w=1200&auto=format&fit=crop',
+    tag:'Home to the sacred Temple of the Tooth Relic.',
+    desc:'Sri Lanka\'s last royal capital sits beside a tranquil lake, home to the Temple of the Sacred Tooth Relic — one of Buddhism\'s most venerated sites. Visit botanical gardens and catch a traditional Kandyan dance performance.',
+    time:'Year-round', highlight:'Temple of the Tooth Relic'
+  },
+  {
+    id:'mirissa', name:'Mirissa', region:'Southern Coast',
+    img:'https://images.unsplash.com/photo-1519566335946-e6f65f0f4fdf?q=80&w=1200&auto=format&fit=crop',
+    tag:'Palm-fringed beaches and whale-watching at dawn.',
+    desc:'A crescent beach town famous for blue whale watching, coconut-palm coastlines, and easy-going surf breaks. Catch sunrise boat trips into the deep waters of the Indian Ocean for a chance to see the largest animal on Earth.',
+    time:'Nov – Apr', highlight:'Dawn blue whale watching'
+  },
+  {
+    id:'dambulla', name:'Dambulla', region:'Cultural Triangle',
+    img:'https://images.unsplash.com/photo-1582103517762-613cc237349b?q=80&w=1200&auto=format&fit=crop',
+    tag:'The Golden Temple — Sri Lanka\'s largest cave monastery.',
+    desc:'Carved into a granite outcrop over 22 centuries ago, the Dambulla Cave Temple shelters five sacred caverns lined with over 150 Buddha statues and 2,100 square metres of intricate murals. Still an active place of worship, it is usually paired with a Sigiriya day trip.',
+    time:'Jan – Mar', highlight:'The five painted cave shrines'
+  },
+  {
+    id:'colombo', name:'Colombo', region:'Western Province',
+    img:'https://images.unsplash.com/photo-1742277295420-650b9134086a?q=80&w=1200&auto=format&fit=crop',
+    tag:'The commercial capital — colonial streets meet a glass skyline.',
+    desc:'Sri Lanka\'s largest city blends Dutch and British colonial quarters with a modern skyline crowned by the Lotus Tower. Wander the Galle Face Green promenade at sunset, browse the Dutch Hospital shopping precinct, and visit the golden Gangaramaya Temple.',
+    time:'Year-round', highlight:'Galle Face Green at sunset'
+  },
+  {
+    id:'nuwaraeliya', name:'Nuwara Eliya', region:'Hill Country',
+    img:'https://images.unsplash.com/photo-1559038300-07cb5d6c3d27?q=80&w=1200&auto=format&fit=crop',
+    tag:'"Little England" — misty peaks and endless tea gardens.',
+    desc:'Sri Lanka\'s highest town sits at 1,900m, ringed by rolling tea estates, Tudor-style cottages, and Victoria Park. Tour a working tea factory, sip a fresh cup at the source, and feel the cool mountain air that makes this Ceylon\'s tea capital.',
+    time:'Mar – May', highlight:'Tea factory tour & tasting'
+  }
+];
+
+const packages = {
+  3: [
+    { name:'Colombo & Galle Dash', price:249, tag:'Coastal Taster', featured:false,
+      features:['2 nights boutique hotel','Galle Fort walking tour','Colombo city highlights','Airport transfers'] },
+    { name:'Kandy Heritage Sprint', price:299, tag:'Most Popular', featured:true,
+      features:['2 nights in Kandy','Temple of the Tooth visit','Royal Botanical Gardens','Kandyan dance show','All meals included'] },
+    { name:'Sigiriya Explorer', price:279, tag:'Ancient Wonders', featured:false,
+      features:['2 nights near Sigiriya','Sunrise rock fortress climb','Dambulla Cave Temple','Village bike tour'] },
+  ],
+  7: [
+    { name:'Coastal Escape', price:449, tag:'Beach & Fort', featured:false,
+      features:['4 nights beachfront stay','Whale watching excursion','Galle Fort walking tour','Airport transfers'] },
+    { name:'Cultural Triangle', price:679, tag:'Most Popular', featured:true,
+      features:['Sigiriya Rock sunrise climb','Dambulla Cave Temple','Kandy Esala Perahera insight','Scenic train to Ella','All meals included'] },
+    { name:'Wild Ceylon', price:599, tag:'Safari & Hills', featured:false,
+      features:['Yala National Park safari','Nuwara Eliya tea factory tour','Horton Plains hike','Boutique eco-lodge stays'] },
+  ],
+  14: [
+    { name:'Grand Coastal Loop', price:899, tag:'Full Coastline', featured:false,
+      features:['South & east coast beaches','2 whale watching trips','Surf lessons in Weligama','Private driver throughout'] },
+    { name:'Complete Ceylon', price:1299, tag:'Most Popular', featured:true,
+      features:['Cultural Triangle + hill country','Yala safari & Ella hikes','South coast beach finale','5-star select stays','All meals included'] },
+    { name:'Wellness & Wild', price:1099, tag:'Slow Travel', featured:false,
+      features:['Ayurveda spa retreat days','Yala & Udawalawe safaris','Tea country immersion','Private yoga sessions'] },
+  ]
+};
+
+const mapLocations = {
+  colombo:     'Colombo, Sri Lanka',
+  sigiriya:    'Sigiriya, Sri Lanka',
+  kandy:       'Kandy, Sri Lanka',
+  ella:        'Ella, Sri Lanka',
+  galle:       'Galle Fort, Sri Lanka',
+  mirissa:     'Mirissa, Sri Lanka',
+  dambulla:    'Dambulla Cave Temple, Sri Lanka',
+  nuwaraeliya: 'Nuwara Eliya, Sri Lanka'
+};
+
+/* ============================================================
+   SCROLL REVEAL (must be defined before goTo(), which uses it)
+============================================================ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold:0.15 });
+
+/* ============================================================
+   NAVIGATION / VIEW SWITCHING
+============================================================ */
+function goTo(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + view);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.nav === view));
+
+  window.scrollTo({ top:0, behavior:'instant' in window ? 'instant' : 'auto' });
+  history.replaceState(null, '', '#' + view);
+
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+  mobileMenu.classList.add('hidden');
+  iconOpen.classList.remove('hidden');
+  iconClose.classList.add('hidden');
+}
+
+document.querySelectorAll('.nav-trigger').forEach(btn => {
+  btn.addEventListener('click', () => goTo(btn.dataset.nav));
+});
+// NOTE: initial view navigation is triggered at the very end of this script,
+// after every DOM reference and render function below has been set up.
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+/* ============================================================
+   NAVBAR SHADOW + MOBILE MENU
+============================================================ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('shadow-lg', window.scrollY > 30);
+  navbar.classList.toggle('shadow-jungle-900/5', window.scrollY > 30);
+});
+
+const mobileBtn = document.getElementById('mobileBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const iconOpen = document.getElementById('iconOpen');
+const iconClose = document.getElementById('iconClose');
+mobileBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+  iconOpen.classList.toggle('hidden');
+  iconClose.classList.toggle('hidden');
+});
+
+/* ============================================================
+   RENDER DESTINATIONS
+============================================================ */
+const destGrid = document.getElementById('destGrid');
+destinations.forEach((d, i) => {
+  const card = document.createElement('div');
+  card.className = `card-hover group relative rounded-3xl overflow-hidden cursor-pointer h-96 ${d.large ? 'lg:col-span-2 lg:row-span-2 lg:h-[34rem]' : ''}`;
+  card.setAttribute('data-reveal','');
+  card.innerHTML = `
+    <img src="${d.img}" alt="${d.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/10 to-transparent"></div>
+    <div class="absolute bottom-0 p-6 ${d.large ? 'lg:p-8' : ''}">
+      <span class="text-gold-300 text-xs font-bold tracking-widest uppercase">${d.region}</span>
+      <h3 class="font-display ${d.large ? 'text-3xl' : 'text-2xl'} text-sand font-semibold mt-2">${d.name}</h3>
+      <p class="text-sand/80 mt-2 text-sm max-w-sm">${d.tag}</p>
+      <span class="inline-flex items-center gap-2 text-gold-300 text-xs font-bold mt-3 opacity-0 group-hover:opacity-100 transition-opacity">View Details <i class="fa-solid fa-arrow-right"></i></span>
+    </div>
+  `;
+  card.addEventListener('click', () => openModal(d));
+  destGrid.appendChild(card);
+  observer.observe(card);
+});
+
+/* ============================================================
+   DESTINATION MODAL
+============================================================ */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalPanel = document.getElementById('modalPanel');
+let currentModalDest = null;
+
+function openModal(d) {
+  currentModalDest = d;
+  document.getElementById('modalImg').src = d.img;
+  document.getElementById('modalRegion').textContent = d.region;
+  document.getElementById('modalTitle').textContent = d.name;
+  document.getElementById('modalDesc').textContent = d.desc;
+  document.getElementById('modalTime').textContent = d.time;
+  document.getElementById('modalHighlight').textContent = d.highlight;
+
+  modalOverlay.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    modalOverlay.classList.remove('opacity-0');
+    modalPanel.classList.remove('opacity-0','translate-y-6','scale-95');
+  });
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modalOverlay.classList.add('opacity-0');
+  modalPanel.classList.add('opacity-0','translate-y-6','scale-95');
+  document.body.style.overflow = '';
+  setTimeout(() => modalOverlay.classList.add('hidden'), 300);
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+
+document.getElementById('modalMapBtn').addEventListener('click', () => {
+  closeModal();
+  goTo('map');
+  if (currentModalDest && mapLocations[currentModalDest.id]) {
+    setTimeout(() => setMapLocation(currentModalDest.id), 150);
+  }
+});
+document.getElementById('modalContactBtn').addEventListener('click', () => {
+  closeModal();
+  goTo('contact');
+});
+
+/* ============================================================
+   TOUR PACKAGES
+============================================================ */
+const pkgGrid = document.getElementById('pkgGrid');
+const durBtns = document.querySelectorAll('.dur-btn');
+
+function renderPackages(days) {
+  pkgGrid.innerHTML = '';
+  packages[days].forEach((p, i) => {
+    const card = document.createElement('div');
+    card.setAttribute('data-reveal','');
+    card.className = `pkg-card card-hover rounded-3xl p-8 flex flex-col relative ${p.featured ? 'featured shadow-2xl shadow-black/30 border border-gold-500/30' : 'bg-sand'}`;
+    card.innerHTML = `
+      ${p.featured ? `<span class="absolute -top-3 left-8 bg-gold-500 text-jungle-900 text-xs font-bold px-4 py-1 rounded-full tracking-widest uppercase">${p.tag}</span>` : `<span class="text-jungle-700 font-bold text-xs tracking-widest uppercase">${p.tag}</span>`}
+      <span class="${p.featured ? 'text-gold-300' : 'text-jungle-700'} font-bold text-xs tracking-widest uppercase mt-2 block">${p.name}</span>
+      <p class="font-display text-4xl font-semibold mt-3 ${p.featured ? 'text-sand' : 'text-jungle-900'}">$${p.price} <span class="text-base font-body font-medium ${p.featured ? 'text-sand/60' : 'text-ink-700/60'}">/ person</span></p>
+      <p class="${p.featured ? 'text-sand/70' : 'text-ink-700/70'} mt-3 text-sm">${days}-day journey across Sri Lanka's finest routes.</p>
+      <ul class="mt-6 space-y-3 text-sm ${p.featured ? 'text-sand/90' : 'text-ink-700'} flex-1">
+        ${p.features.map(f => `<li class="flex gap-2"><span class="${p.featured ? 'text-gold-300' : 'text-gold-500'}"><i class="fa-solid fa-check"></i></span> ${f}</li>`).join('')}
+      </ul>
+      <button data-nav="contact" class="nav-trigger mt-8 ${p.featured ? 'bg-gold-500 hover:bg-gold-300 text-jungle-900' : 'gold-outline-btn'} text-center font-bold py-3 rounded-full transition-colors">Enquire Now</button>
+    `;
+    pkgGrid.appendChild(card);
+    observer.observe(card);
+    card.querySelector('.nav-trigger').addEventListener('click', () => goTo('contact'));
+  });
+}
+renderPackages(3);
+
+durBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    durBtns.forEach(b => { b.classList.remove('active','bg-gold-500','text-jungle-900'); b.classList.add('text-sand/70'); });
+    btn.classList.add('active','bg-gold-500','text-jungle-900');
+    btn.classList.remove('text-sand/70');
+    renderPackages(btn.dataset.dur);
+  });
+});
+// init active state style
+durBtns[0].classList.add('bg-gold-500','text-jungle-900');
+durBtns.forEach((b,i)=>{ if(i>0) b.classList.add('text-sand/70'); });
+
+/* ============================================================
+   LIVE MAP
+============================================================ */
+const mapFrame = document.getElementById('mapFrame');
+const locPins = document.querySelectorAll('.loc-pin');
+const mapInfoImg = document.getElementById('mapInfoImg');
+const mapInfoRegion = document.getElementById('mapInfoRegion');
+const mapInfoName = document.getElementById('mapInfoName');
+const mapInfoDesc = document.getElementById('mapInfoDesc');
+const mapInfoTime = document.getElementById('mapInfoTime');
+const mapInfoHighlight = document.getElementById('mapInfoHighlight');
+
+function setMapLocation(key) {
+  const query = mapLocations[key];
+  if (!query) return;
+  mapFrame.src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+  locPins.forEach(p => p.classList.toggle('active', p.dataset.loc === key));
+
+  const match = destinations.find(d => d.id === key);
+  if (match) {
+    mapInfoImg.src = match.img.replace('w=1200','w=400').replace('w=1400','w=400');
+    mapInfoRegion.textContent = match.region;
+    mapInfoName.textContent = match.name;
+    mapInfoDesc.textContent = match.tag;
+    mapInfoTime.textContent = match.time;
+    mapInfoHighlight.textContent = match.highlight;
+  }
+}
+
+locPins.forEach(pin => {
+  pin.addEventListener('click', () => setMapLocation(pin.dataset.loc));
+});
+setMapLocation('colombo');
+
+/* ============================================================
+   QUICK SEARCH (Home -> Destinations)
+============================================================ */
+document.getElementById('quickSearchBtn').addEventListener('click', doQuickSearch);
+document.getElementById('quickSearch').addEventListener('keydown', (e) => { if (e.key === 'Enter') doQuickSearch(); });
+
+function doQuickSearch() {
+  const val = document.getElementById('quickSearch').value.trim().toLowerCase();
+  goTo('destinations');
+  if (!val) return;
+  const match = destinations.find(d => d.name.toLowerCase().includes(val));
+  if (match) setTimeout(() => openModal(match), 200);
+}
+
+/* ============================================================
+   AI TRIP PLANNER
+============================================================ */
+const chips = document.querySelectorAll('.interest-chip');
+const selectedInterests = new Set();
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const val = chip.dataset.interest;
+    if (selectedInterests.has(val)) {
+      selectedInterests.delete(val);
+      chip.classList.remove('bg-jungle-700','text-sand','border-jungle-700');
+    } else {
+      selectedInterests.add(val);
+      chip.classList.add('bg-jungle-700','text-sand','border-jungle-700');
+    }
+  });
+});
+
+const plannerForm = document.getElementById('plannerForm');
+const placeholder = document.getElementById('plannerPlaceholder');
+const output = document.getElementById('plannerOutput');
+const outHeadline = document.getElementById('outHeadline');
+const outDays = document.getElementById('outDays');
+
+const pool = {
+  "Culture & Heritage": ["Explore Sigiriya Rock Fortress at sunrise","Wander the Temple of the Tooth Relic in Kandy","Tour the Dambulla Cave Temple frescoes","Walk the ramparts of Galle Fort"],
+  "Beaches": ["Relax on Mirissa's golden sands","Sunset swim at Unawatuna Bay","Surf lesson in Weligama","Beachside seafood dinner in Tangalle"],
+  "Wildlife": ["Dawn safari in Yala National Park spotting leopards","Whale watching boat trip off Mirissa","Visit the Pinnawala Elephant sanctuary","Birdwatching at Bundala wetlands"],
+  "Hiking": ["Sunrise hike up Adam's Peak","Trek Horton Plains to World's End","Walk the Nine Arch Bridge trail in Ella","Ridge walk through Knuckles mountain range"],
+  "Food": ["Sri Lankan cooking class with a local family","Street food tasting tour in Colombo","Tea tasting at a Nuwara Eliya estate","Spice garden tour near Matale"]
+};
+const generic = ["Scenic train ride through the hill country","Free morning to relax at your hotel","Village bicycle tour through paddy fields","Sunset viewpoint stop with local snacks"];
+
+plannerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const days = parseInt(document.getElementById('tripDays').value);
+  const style = document.querySelector('input[name="style"]:checked').value;
+  const budgetVal = document.getElementById('budgetRange').value;
+  const budgetLabel = { "1":"Backpacker", "2":"Comfort", "3":"Luxury" }[budgetVal];
+
+  const interests = Array.from(selectedInterests);
+  let activityPool = [];
+  if (interests.length) interests.forEach(i => activityPool.push(...pool[i]));
+  else Object.values(pool).forEach(arr => activityPool.push(...arr));
+  activityPool = [...new Set(activityPool)];
+
+  for (let i = activityPool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [activityPool[i], activityPool[j]] = [activityPool[j], activityPool[i]];
+  }
+
+  const styleLabel = { relaxed:"Relaxed", balanced:"Balanced", adventurous:"Adventurous" }[style];
+  outHeadline.textContent = `${days}-Day ${styleLabel} Ceylon Route · ${budgetLabel}`;
+  outDays.innerHTML = "";
+
+  const perDay = style === 'relaxed' ? 1 : (style === 'balanced' ? 2 : 3);
+  for (let d = 1; d <= days; d++) {
+    let items = [];
+    for (let k = 0; k < perDay; k++) {
+      const idx = (d - 1) * perDay + k;
+      items.push(activityPool[idx % activityPool.length] || generic[idx % generic.length]);
+    }
+    const li = document.createElement('li');
+    li.className = "flex gap-4";
+    li.innerHTML = `
+      <div class="flex-shrink-0 w-9 h-9 rounded-full bg-gold-500/20 border border-gold-300/40 text-gold-300 font-bold text-xs flex items-center justify-center">D${d}</div>
+      <div class="pt-1">${items.map(i => `<p>${i}</p>`).join('')}</div>
+    `;
+    outDays.appendChild(li);
+  }
+
+  placeholder.classList.add('hidden');
+  output.classList.remove('hidden');
+});
+
+/* ============================================================
+   CONTACT FORM
+============================================================ */
+const contactForm = document.getElementById('contactForm');
+const contactSuccess = document.getElementById('contactSuccess');
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  contactSuccess.classList.remove('hidden');
+  contactForm.reset();
+  setTimeout(() => contactSuccess.classList.add('hidden'), 5000);
+});
+
+/* ============================================================
+   INITIAL NAVIGATION — runs last, once every DOM reference,
+   render function, and event listener above is fully set up.
+============================================================ */
+const initial = (location.hash || '#home').replace('#','');
+if (document.getElementById('view-' + initial)) goTo(initial); else goTo('home');
+</script>
+
+</body>
+</html>
